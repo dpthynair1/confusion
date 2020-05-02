@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Col, Label } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Col, Label} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import {FadeTransform, Fade, Stagger} from 'react-animation-components'
+
 
 
 
@@ -14,6 +16,11 @@ import { baseUrl } from '../shared/baseUrl';
 function RenderDish({ dish }) {
   return (
     <div className=" col-12 col-md-4 m-1">
+     <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
       <Card>
         <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
         <CardBody>
@@ -22,7 +29,7 @@ function RenderDish({ dish }) {
         </CardBody>
       </Card>
 
-
+</FadeTransform>
     </div>
   )
 }
@@ -31,13 +38,14 @@ function RenderComments({ comments,postComment,dishId }) {
   const listComments = comments.map((comment) => {
     if (comment != null) {
       return (
+        <Fade in>
         <li key={comment.id}>
           <div>
             <p>{comment.comment} </p>
             <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
           </div>
         </li>
-
+        </Fade>
 
       )
     } else {
@@ -48,7 +56,9 @@ function RenderComments({ comments,postComment,dishId }) {
   })
   return (
   <div>
+  <Stagger in>
     {listComments}
+    </Stagger>
     <CommentForm  dishId= {dishId} postComment= {postComment}/>
     </div>
     )
@@ -206,6 +216,7 @@ const  DishDetail = (props) => {
                 
                 <div className="col-12 col-md-5 m-1">
                 <ul className="list-unstyled">
+                <h4>Comments</h4>
                     <RenderComments comments={props.comments}
                     postComment= {props.postComment}
                     dishId= {props.dish.id} />
