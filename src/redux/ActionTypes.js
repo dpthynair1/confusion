@@ -15,4 +15,6 @@ export const ADD_PROMOS = 'ADD_PROMOS';
 
 export const LEADERS_LOADING = 'LEADERS_LOADING';
 export const LEADERS_FAILED = 'LEADERS_FAILED';
-export const ADD_LEADERS = 'ADD_PLEADERS';
+export const ADD_LEADERS = 'ADD_LEADERS';
+
+

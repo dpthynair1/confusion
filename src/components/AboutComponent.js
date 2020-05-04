@@ -2,15 +2,15 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
-import {Fade ,Stagger} from 'react-animation-components';
+import { Fade, Stagger } from 'react-animation-components';
 
 function RenderLeader({ leader }) {
     return (
         <Fade in >
             <div key={leader.id} className="col-12 mt-5">
-           
-                    <Media tag="li">
-                  
+
+                <Media tag="li">
+
                     <Media left middle>
                         <Media object src={baseUrl + leader.image} alt={leader.name} />
                     </Media>
@@ -19,11 +19,11 @@ function RenderLeader({ leader }) {
                         <p>{leader.designation}</p>
                         {leader.description}
                     </Media>
-                   
-                    </Media>
-                   
-                </div>
-                </Fade>
+
+                </Media>
+
+            </div>
+        </Fade>
     )
 }
 
@@ -34,10 +34,10 @@ function About(props) {
         console.log(leader);
         return (
             <Stagger in>
-            <div >
-           <RenderLeader leader = {leader} />
-           </div>
-           </Stagger>
+                <div >
+                    <RenderLeader leader={leader} />
+                </div>
+            </Stagger>
         );
     });
 
@@ -92,16 +92,16 @@ function About(props) {
                 </div>
             </div>
             <div className="container">
-            <div className="row row-content">
-                <div className="col-12 ml-4">
-                    <h3>Corporate Leadership</h3>
-                </div>
-               
-               
+                <div className="row row-content">
+                    <div className="col-12 ml-4">
+                        <h3>Corporate Leadership</h3>
+                    </div>
+
+
                     <Media list>
                         {leaders}
                     </Media>
-                  
+
                 </div>
             </div>
         </div>
